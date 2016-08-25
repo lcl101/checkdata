@@ -104,10 +104,6 @@ func (this *Conn) Post(method string,body string) (string, error) {
 	
 }
 
-// { "body": {"campaignIds":[66601576],"keywordFields":["all"],"includeTemp":"false"}, "header": 
-//{"username":"baidu-京东POP放量三二8161355","token":"42ec02df5e4822e054f2e2e011a41f20","target":"","accessToken":"","action
-// ":"API-SDK","password":"JD@pc0719"}}
-
 func (this *Conn) Do(method string,body string) (string, error) {
 	url := this.conf.url + "/json/"+this.conf.productline+"/"+this.conf.version+"/" + this.conf.service + "/" +method
 	json := "{ \"body\": "+body+", \"header\":" + this.conf.toJson()+"}"
