@@ -1,0 +1,2 @@
+使用go（golang）实现了百度关键词竞价的下载api。
+ApiSDKJsonClient
