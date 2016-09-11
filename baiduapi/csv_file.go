@@ -22,7 +22,8 @@ func DownCsv(bulk *Bulk, id, key, gzFileName, csvFileName string) error {
 		if err != nil {
 			return err
 		}
-		time.Sleep(time.Second * 2)
+		// fmt.Println("file status is: ",status)
+		time.Sleep(time.Second * 3)
 	}
 
 	fileUrl, err := bulk.GetFilePath(fileId,"keywordFilePath")

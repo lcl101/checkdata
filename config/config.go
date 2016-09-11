@@ -39,4 +39,5 @@ func NewLocalFileMap() *FileMap {
 var (
 	BaiduFileMap = NewBaiduFileMap()
 	LocalFileMap = NewLocalFileMap()
+	IsDebug		= false
 )

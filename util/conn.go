@@ -107,9 +107,9 @@ func (this *Conn) Post(method string,body string) (string, error) {
 func (this *Conn) Do(method string,body string) (string, error) {
 	url := this.conf.url + "/json/"+this.conf.productline+"/"+this.conf.version+"/" + this.conf.service + "/" +method
 	json := "{ \"body\": "+body+", \"header\":" + this.conf.toJson()+"}"
-	if IsDebug() {
-		fmt.Println("json=",json)
-	}
+	// if IsDebug() {
+	// 	fmt.Println("json=",json)
+	// }
 	tmp := ioutil.NopCloser(strings.NewReader(json))
 	req, err := http.NewRequest("POST", url, tmp)
 	if err != nil {
@@ -117,7 +117,7 @@ func (this *Conn) Do(method string,body string) (string, error) {
 		return "",err
 	}
 	req.Header.Set("Content-type","application/json;charset=utf-8")
-	req.Header.Set("Connection","keep-alive")
+	req.Header.Set("Connection","close")
 
 	tr := &http.Transport{
         TLSClientConfig:    &tls.Config{InsecureSkipVerify: true},
@@ -133,18 +133,18 @@ func (this *Conn) Do(method string,body string) (string, error) {
 		return "",err
 	}
 	defer resp.Body.Close()
-	if IsDebug() {
-		fmt.Println("resp=", resp)
-		fmt.Println("resp.header=",resp.Header)
-		fmt.Println("resp.body=",resp.Body)
-	}
+	// if IsDebug() {
+	// 	fmt.Println("resp=", resp)
+	// 	fmt.Println("resp.header=",resp.Header)
+	// 	fmt.Println("resp.body=",resp.Body)
+	// }
 
 	data, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return "",err
 	}
-	if IsDebug() {	
-		fmt.Println("body=",string(data))
-	}
+	// if IsDebug() {	
+	// 	fmt.Println("body=",string(data))
+	// }
 	return string(data),nil
 }
